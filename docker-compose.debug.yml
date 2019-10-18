@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  djangoapi:
+    image: djangoapi
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000

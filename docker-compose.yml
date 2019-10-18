@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  db:
+    image: kartoza/postgis:11.0-2.5
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER}
+    ports:
+      - "5432:5432"  
+    networks: 
+      - backend
+  djangoapi:
+    image: djangoapi
+    build: .
+    command: python manage.py runserver 0.0.0.0:3000
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER}
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      WAIT_HOSTS: db:5432
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    networks: 
+      - backend  
+networks: 
+    backend:
+      driver: bridge    
