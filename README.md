@@ -1,8 +1,8 @@
 # BASIC Docker Ready 
 
-Creasted and rarely supported by Anton Griev
-
 ## Django+GeoDjango+PostGIS+PostgreSQL quickstart project
+
+Created and rarely supported by Anton Griev
 
 # Requires
 
